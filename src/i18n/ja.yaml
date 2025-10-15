@@ -1,0 +1,49 @@
+about:
+  introduction: ○○紹介
+  roll: ○○連結
+feed:
+  address: 購読アドレス
+  copy:
+    failure: 複写に失敗しました。購読アドレスを手動で複写してください。
+    name: 複写
+    success: 購読アドレスをクリップボードに複写しました！
+  description: このページは Atom 形式のコンテンツ購読ソースです。
+  last: 最終更新
+  usage: 対応しているリーダーで現在のアドレスを追加して、このコンテンツを購読し、最新のコンテンツ更新を適時に取得できます。
+  visit: これはフィードページです。完全なウェブサイト体験のために {title} を訪問してください。
+home:
+  heatmap:
+    empty: 無字
+    jotting: 随筆 {count} 件
+    note: 文記 {count} 件
+  newest: 最新文記
+  prefaces: 序文歴史
+jotting:
+  tag: 付札
+navigation:
+  about: 情報
+  home: 玄関
+  jotting: 随筆
+  note: 文記
+  policy: 規約
+  preface: 序文
+  subscription: 購読
+note:
+  contents: 目次
+  series: 系列
+  tag: 付札
+  top: 至頂
+read:
+  words: '{words} 字'
+sensitive:
+  back: リストに戻ります
+  continue: 承知いたしました、読み続けます
+  description: このコンテンツには、性的、暴力的、血生臭い、または感情的に引き金となる内容が含まれている可能性があります。
+  feed: |-
+    <p>このコンテンツには、性的、暴力的、血生臭い、または感情的に引き金となる内容が含まれている可能性があります。 </p>
+    <p>読むには、<a href = "{link}">元のリンク</a>にアクセスしてください。 </p>
+  icon: 敏感コンテンツを含む
+  title: コンテンツ警告
+  warning: このコンテンツがあなたの精神的健康に影響を与える可能性がある場合は、すぐに離れてください！
+statistics: '{words} 文字を書いた'
+theme: 'テーマ: ThoughtLite'
