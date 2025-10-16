@@ -1,12 +1,12 @@
 {
-	"title": "ThoughtLite",
-	"prologue": "If you need a website\nthat loads fast and has great SEO, then Astro is for you.",
+	"title": "Kev's Digital Garden",
+	"prologue": "Welcome to my personal digital garden, please lose yourself in this thoughts.",
 	"author": {
-		"name": "Your Name",
-		"email": "hi@your.mail",
-		"link": "https://your.website"
+		"name": "Kevin Zeledon",
+		"email": "kzeledon@pm.me",
+		"link": "https://garden.kevv.space"
 	},
-	"description": "A modern Astro theme focused on content creation.",
+	"description": "A personal digital garden built with Astro and the ThoughtLite theme, used to store, share and grow personal ideas.",
 	"copyright": {
 		"type": "CC BY-NC-ND 4.0",
 		"year": "2025"

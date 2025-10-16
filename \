@@ -11,10 +11,10 @@
 		"typescript",
 		"i18n"
 	],
-	"homepage": "https://garden.kevv.space",
+	"homepage": "https://github.com/kevv87/kev-digital-garden",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/kevv87/kev-digital-garden.git"
+		"url": "https://github.com/tuyuritio/astro-theme-thought-lite.git"
 	},
 	"license": "GPL-3.0",
 	"author": {
