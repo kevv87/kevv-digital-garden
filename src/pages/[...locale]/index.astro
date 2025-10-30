@@ -42,13 +42,13 @@ const notes = (
 ).sort((a, b) => b.data.timestamp.getTime() - a.data.timestamp.getTime());
 
 // Get published jottings for current locale
-const jottings = await getCollection("jotting", jotting => {
-	// Extract language and jotting ID from file path structure
-	const [language] = jotting.id.split("/");
-
-	// Filter published jottings by current locale
-	return !jotting.data.draft && language == locale;
-});
+// const jottings = await getCollection("jotting", jotting => {
+// 	// Extract language and jotting ID from file path structure
+// 	const [language] = jotting.id.split("/");
+//
+// 	// Filter published jottings by current locale
+// 	return !jotting.data.draft && language == locale;
+// });
 
 // Get the most recent note and preface for display
 const newest = notes[0];
@@ -80,8 +80,6 @@ const { Content } = preface ? await render(preface) : ({} as any);
 		{
 			newest && (
 				<footer class="flex items-center justify-center flex-wrap-reverse gap-10">
-					<Heatmap {locale} {notes} {jottings} />
-
 					<blockquote class="flex-grow">
 						<h3>{t("home.newest")}</h3>
 						<div class="flex flex-col sm:flex-row justify-between gap-1 mt-2">

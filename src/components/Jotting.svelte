@@ -66,20 +66,6 @@
 <main class="flex flex-col-reverse sm:flex-row gap-10 grow">
 	<article class="flex flex-col grow">
 		<header class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-5">
-			{#each list as jotting (jotting.id)}
-				<section animate:flip={{ duration: 150 }} class="flex flex-col justify-center gap-0.5 b-2 b-solid b-weak rd-2 py-2 px-3">
-					<span class="flex items-center gap-1">
-						{#if jotting.data.top > 0}<span>{@render top()}</span>{/if}
-						{#if jotting.data.sensitive}<span>{@render sensitive()}</span>{/if}
-						<a href={getRelativeLocaleUrl(locale, `/jotting/${jotting.id.split("/").slice(1).join("/")}`)} class="c-primary font-bold link">{jotting.data.title}</a>
-					</span>
-					<span class="flex gap-1">
-						{#each jotting.data.tags as tag}
-							<button onclick={() => switch_tag(tag, true)} class="text-3.3 c-remark">#{tag}</button>
-						{/each}
-					</span>
-				</section>
-			{/each}
 		</header>
 
 		{#if pages > 1}
@@ -101,14 +87,6 @@
 		{/if}
 	</article>
 	<aside class="sm:flex-basis-200px flex flex-col gap-5">
-		<section>
-			<h3>{t("jotting.tag")}</h3>
-			<p>
-				{#each tag_list as tag (tag)}
-					<button class:selected={tags.includes(tag)} onclick={() => switch_tag(tag)}>{tag}</button>
-				{/each}
-			</p>
-		</section>
 	</aside>
 </main>
 
@@ -119,18 +97,13 @@
 	import { fade } from "svelte/transition";
 	import i18nit from "$i18n";
 
-	let { locale, jottings, tags: tag_list, top, sensitive, left, right, dots }: { locale: string; jottings: any[]; tags: string[]; top: Snippet; sensitive: Snippet; left: Snippet; right: Snippet; dots: Snippet } = $props();
+	let { locale, tags: tag_list, top, sensitive, left, right, dots }: { locale: string; tags: string[]; top: Snippet; sensitive: Snippet; left: Snippet; right: Snippet; dots: Snippet } = $props();
 
 	const t = i18nit(locale);
 
 	let initial = $state(false); // Track initial load to prevent unexpected effects
 	let tags: string[] = $state([]);
 	let filtered: any[] = $derived.by(() => {
-		let list: any[] = jottings
-			// Apply tag filtering
-			.filter(jotting => tags.every(tag => jotting.data.tags?.includes(tag)))
-			// Sort by timestamp (newest first)
-			.sort((a, b) => b.data.top - a.data.top || b.data.timestamp.getTime() - a.data.timestamp.getTime());
 
 		if (!initial) return list;
 

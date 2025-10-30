@@ -1,6 +1,6 @@
 <section class="grid grid-flow-col grid-rows-7 gap-1">
 	{#each heatmap.reverse() as day}
-		{@const number = day.notes.length + day.jottings.length}
+		{@const number = day.notes.length}
 		<figure class="relative group">
 			<i class="block w-2.5 h-2.5 bg-primary {number > 2 ? 'opacity-100' : number > 1 ? 'opacity-70' : number > 0 ? 'opacity-40' : 'opacity-10'}"></i>
 
@@ -12,14 +12,6 @@
 						<ul class="flex flex-col gap-0.5">
 							{#each day.notes as note}
 								<a href={getRelativeLocaleUrl(locale, `/note/${note.id.split("/").slice(1).join("/")}`)} aria-label={note.data.title} class="ml-1 link">{note.data.title}</a>
-							{/each}
-						</ul>
-					{/if}
-					{#if day.jottings.length > 0}
-						<p class="my-1">{t("home.heatmap.jotting", { count: day.jottings.length })}：</p>
-						<ul class="flex flex-col gap-0.5">
-							{#each day.jottings as jotting}
-								<a href={getRelativeLocaleUrl(locale, `/jotting/${jotting.id.split("/").slice(1).join("/")}`)} aria-label={jotting.data.title} class="ml-1 link">{jotting.data.title}</a>
 							{/each}
 						</ul>
 					{/if}
@@ -36,7 +28,7 @@
 	import Time from "$utils/time";
 	import i18nit from "$i18n";
 
-	let { locale, notes, jottings, weeks = 20 }: { locale: string; notes: any[]; jottings: any[]; weeks: number } = $props();
+	let { locale, notes, weeks = 20 }: { locale: string; notes: any[]; weeks: number } = $props();
 
 	const days = weeks * 7; // Convert weeks to days for heatmap
 
@@ -49,11 +41,10 @@
 	const start = Time.addDays(now, (6 - Time.weekday(now)) % 7);
 
 	// Create 140-day heatmap data structure (roughly 4+ months of activity)
-	// Each day contains: date, empty arrays for notes and jottings
+	// Each day contains: date, empty arrays for notes
 	const heatmap = Array.from({ length: days }, (_, day) => ({
 		date: Time.subtractDays(start, day), // Calculate date going backwards from today
 		notes: [] as any[], // Notes published on this day
-		jottings: [] as any[] // Jottings published on this day
 	}));
 
 	// Populate heatmap with notes data
@@ -63,14 +54,5 @@
 
 		// Only include notes from the last 100 days
 		if (0 <= gap && gap < days) heatmap[gap].notes.push(note);
-	});
-
-	// Populate heatmap with jottings data
-	jottings.forEach(jotting => {
-		// Calculate how many days ago this jotting was published
-		let gap = Time.diffDays(start, jotting.data.timestamp);
-
-		// Only include jottings from the last 100 days
-		if (0 <= gap && gap < days) heatmap[gap].jottings.push(jotting);
 	});
 </script>
