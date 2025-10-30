@@ -55,24 +55,24 @@ export const GET: APIRoute = async ({ site, params }) => {
 		items.push(...notes);
 	}
 
-	if (config.feed?.section?.includes("jotting") || config.feed?.section === "*" || config.feed?.section === undefined) {
-		let jottings = (await getCollection("jotting", jotting => {
-			// Extract language from the file path structure
-			const [locale, ...id] = jotting.id.split("/");
-
-			// Attach locale and link
-			(<any>jotting).link = new URL(getRelativeLocaleUrl(locale, `/jotting/${id.join("/")}`), site).toString();
-
-			// Apply filtering criteria
-			let published = !jotting.data.draft;	// Exclude draft posts
-			let localed = language == locale;		// Language filter
-
-			// Include note only if it passes all filters
-			return published && localed;
-		}));
-
-		items.push(...jottings);
-	}
+	// if (config.feed?.section?.includes("jotting") || config.feed?.section === "*" || config.feed?.section === undefined) {
+	// 	let jottings = (await getCollection("jotting", jotting => {
+	// 		// Extract language from the file path structure
+	// 		const [locale, ...id] = jotting.id.split("/");
+	//
+	// 		// Attach locale and link
+	// 		(<any>jotting).link = new URL(getRelativeLocaleUrl(locale, `/jotting/${id.join("/")}`), site).toString();
+	//
+	// 		// Apply filtering criteria
+	// 		let published = !jotting.data.draft;	// Exclude draft posts
+	// 		let localed = language == locale;		// Language filter
+	//
+	// 		// Include note only if it passes all filters
+	// 		return published && localed;
+	// 	}));
+	//
+	// 	items.push(...jottings);
+	// }
 
 	// Sort all items by timestamp and limit to configured number
 	items = items

@@ -25,19 +25,19 @@ const note = defineCollection({
  * Jotting collection configuration
  * Represents shorter posts, quick thoughts, or micro-blog entries
  */
-const jotting = defineCollection({
-	// Load all markdown files except those starting with underscore
-	loader: glob({ pattern: ["**/*.md", "!**/_*.md", "!**/_*/*.md"], base: "./src/content/jotting" }),
-	schema: z.object({
-		title: z.string(),								// Jotting title (required)
-		timestamp: z.date(),							// Publication date (required)
-		tags: z.array(z.string()).optional(),			// Array of topic tags
-		description: z.string().optional(),				// Brief description
-		sensitive: z.boolean().default(false),			// Marks content as sensitive
-		top: z.number().int().nonnegative().default(0),	// Top priority for sorting (higher is more important)
-		draft: z.boolean().default(false)				// Draft status
-	})
-});
+// const jotting = defineCollection({
+// 	// Load all markdown files except those starting with underscore
+// 	loader: glob({ pattern: ["**/*.md", "!**/_*.md", "!**/_*/*.md"], base: "./src/content/jotting" }),
+// 	schema: z.object({
+// 		title: z.string(),								// Jotting title (required)
+// 		timestamp: z.date(),							// Publication date (required)
+// 		tags: z.array(z.string()).optional(),			// Array of topic tags
+// 		description: z.string().optional(),				// Brief description
+// 		sensitive: z.boolean().default(false),			// Marks content as sensitive
+// 		top: z.number().int().nonnegative().default(0),	// Top priority for sorting (higher is more important)
+// 		draft: z.boolean().default(false)				// Draft status
+// 	})
+// });
 
 /**
  * Preface collection configuration
@@ -60,4 +60,4 @@ const information = defineCollection({
 	loader: glob({ pattern: "**/*.(md|yaml)", base: "./src/content/information" })
 });
 
-export const collections = { note, jotting, preface, information };
+export const collections = { note, preface, information };
